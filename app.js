@@ -8,16 +8,31 @@ canvas.height = 800;
 
 // ctx.stroke(); 선을 긁는다
 // ctx.fill(); 색을 채운다
+ctx.lineWidth = 2;
+const colors = [
+    "#ff3838",
+    "#ffb8b8",
+    "#c56cf0",
+    "#ff9f1a",
+    "#fff200",
+    "#32ff7e",
+    "#7efff5",
+]
+let offsetX = 0;
+let offsetY = 0;
 
-ctx.fillRect(210 - 40, 200 - 30, 15, 100);
-ctx.fillRect(350 - 40, 200 - 30, 15, 100);
-ctx.fillRect(260 - 40, 200 - 30, 60, 200);
+function onClick(event) {
+offsetX = event.offsetX;
+offsetY = event.offsetY;
+}
 
-ctx.arc(250, 100, 50, 0, 2 * Math.PI);
-ctx.fill();
-
-ctx.beginPath() ;
-ctx.fillStyle = "white";
-ctx.arc(260 + 10, 80, 8, Math.PI, 2 * Math.PI);
-ctx.arc(220 + 10, 80, 8, Math.PI, 2 * Math.PI);
-ctx.fill();
+function mouseMove(event) {
+     ctx.beginPath();
+     ctx.moveTo(offsetX, offsetY); // 처음 시작하는 좌표
+     const color = colors[Math.floor(Math.random() * colors.length)];
+     ctx.strokeStyle = color;
+     ctx.lineTo(event.offsetX, event.offsetY);
+     ctx.stroke();
+}
+canvas.addEventListener("mousemove", mouseMove);
+canvas.addEventListener("click", onClick);
