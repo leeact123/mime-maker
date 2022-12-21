@@ -3,7 +3,7 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d")
 canvas.width = 800;
 canvas.height = 800;
-ctx.lineWidth = lineWidth.value;
+ctx.lineWidth = lineWidth.value; //html에 추가한 input range의 기본값으로 설정된 value="5"의 값을 준다.
 
 // ctx.moveTo(50, 50); //연필의 시작 좌표를 지정한다. x50 y50에 연필을 갖다데는 것과 같다.
 // ctx.lineTo(150, 50);//연필을 갖다댄 시작점 50,50에서 y는 그대로인채 x로 150만큼 이동하면서 stroke를 긋는다. 
@@ -30,6 +30,7 @@ function cancelPainting() {
 }
 function onLineWidthChange(event) {
     ctx.lineWidth = event.target.value;
+    //event.target.value는 사용자가 range를 변경할 때 마다 지정되는 value를 찾아낸다.
 }
 
 canvas.addEventListener("mousemove", onMove);
